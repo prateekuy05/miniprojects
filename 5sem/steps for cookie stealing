@@ -1,0 +1,40 @@
+username: admin
+password: password
+
+
+press windows + R the type "services.msc"
+ find Mysql80 if it running stop it
+
+step 1: open xampp control panel software
+
+>start Apache
+>start MySQL
+
+step 2: open firefox -> menu -> settings -> scroll down and select netwok settings ->
+
+select manual proxy HTTP proxy: 127.0.0.1 port 8080
+tick Also use this proxy for HTTPS
+
+SOCKS Host: 127.0.0.1
+Port: 8080
+SOCKS v5 select this
+
+
+
+step 3: open burp suite -> temporary project -> use Burp default -> Proxy -> proxy settings -> proxy 127.0.0.1 port: 8080 save it
+then turn on Intercept after some turn off
+
+step 4: login DVWA using "http://127.0.0.1/dvwa/login.php" 
+
+burp suite will start the session hijacking
+
+after login right click -> inspect -> cookie editor -> copy PHPSSID
+
+then open another browser then search for "http://127.0.0.1/dvwa/login.php" 
+
+right click -> inspect -> application -> cookie -> 127.0.0.1 -> paste PHPSSID
+
+in url bar remove the "login.php" then refresh then you successfully access
+
+open another browser enter "http://localhost/dvwa/login.php" then select cookie editor extension 
+paste the copied PHPSSSID the save it.. then refresh the website you automatically logined to website.
